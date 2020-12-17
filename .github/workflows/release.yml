@@ -41,8 +41,8 @@ jobs:
 
     - name: print release
       run: |
-        echo ${{ steps.create_release.outputs.upload_url }} > UPLOAD_URL
-        echo ${{ env.RELEASE_VERSION }} > RELEASE_VERSION
+        echo "${{ steps.create_release.outputs.upload_url }}" >> UPLOAD_URL
+        echo ${{ env.RELEASE_VERSION }} >> RELEASE_VERSION
 
     - name: Upload RELEASE_VERSION
       uses: actions/upload-artifact@v2

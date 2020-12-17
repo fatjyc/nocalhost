@@ -38,6 +38,10 @@ jobs:
         draft: false
         prerelease: false
 
+    - name: print release
+      run: |
+        echo ${{ steps.create_release.outputs.upload_url }}
+
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       env:
@@ -67,7 +71,7 @@ jobs:
         curl -L https://get.helm.sh/helm-v3.4.2-windows-amd64.zip -o build/helm.zip
         unzip build/helm.zip
         dir build
-        issc -/DAppVersion=${{ release-nhctl.env.RELEASE_VERSION }} scripts/release/nocalhost.iss
+        issc -/DAppVersion=${{ env.RELEASE_VERSION }} scripts/release/nocalhost.iss
         dir build
 
     - name: Upload Release Asset
@@ -75,7 +79,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ release-windows.steps.create_release.outputs.upload_url }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: build/NocalhostInstaller.exe
         asset_name: NocalhostInstaller.exe
         asset_content_type: application/octet-stream

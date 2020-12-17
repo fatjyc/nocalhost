@@ -67,12 +67,12 @@ jobs:
         md build
         choco install curl
         choco install unzip
-        curl -L https://github.com/nocalhost/nocalhost/releases/download/latest/nhctl-windows-amd64.exe build/nhctl.exe
+        curl -L https://github.com/nocalhost/nocalhost/releases/download/latest/nhctl-windows-amd64.exe -o build/nhctl.exe
         curl -L https://storage.googleapis.com/kubernetes-release/release/v2.20.0/bin/windows/amd64/kubectl.exe -o build/kubectl.exe
         curl -L https://get.helm.sh/helm-v3.4.2-windows-amd64.zip -o build/helm.zip
-        unzip build/helm.zip
+        unzip build/helm.zip -d build
         dir build
-        issc -/DAppVersion=${{ env.RELEASE_VERSION }} scripts/release/nocalhost.iss
+        iscc -/DAppVersion=${{ env.RELEASE_VERSION }} scripts/release/nocalhost.iss
         dir build
 
     - name: Upload Release Asset

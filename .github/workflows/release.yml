@@ -72,7 +72,7 @@ jobs:
         curl -L https://get.helm.sh/helm-v3.4.2-windows-amd64.zip -o build/helm.zip
         unzip build/helm.zip -d build
         dir build
-        iscc -/DAppVersion=${{ env.RELEASE_VERSION }} scripts/release/nocalhost.iss
+        iscc /DAppVersion=${{ env.RELEASE_VERSION }} scripts/release/nocalhost.iss
         dir build
 
     - name: Upload Release Asset

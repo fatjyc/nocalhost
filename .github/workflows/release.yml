@@ -83,8 +83,11 @@ jobs:
       with:
         name: UPLOAD_URL
     - name: package
+      id: package
       run: |
-        $Version=get-context RELEASE_VERSION
+        $Version=get-content RELEASE_VERSION
+        $UploadUrl=get-content UPLOAD_URL
+        echo "::set-output name=version::$Version"
         md build
         choco install curl
         choco install unzip
@@ -101,7 +104,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        upload_url: ${{ steps.package.outputs.UploadUrl }}
         asset_path: build/NocalhostInstaller.exe
         asset_name: NocalhostInstaller.exe
         asset_content_type: application/octet-stream

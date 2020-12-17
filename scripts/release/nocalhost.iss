@@ -10,7 +10,7 @@ AppId={{CF1B1587-7851-4B9C-8997-41C91A81B24B}
 AppName={#AppName}
 AppVersion={#AppVersion}
 OutputBaseFilename=NocalhostInstaller
-OutputDir=build
+OutputDir=..\..\build
 AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
 AppSupportURL={#AppURL}
@@ -19,7 +19,7 @@ DefaultDirName={autopf}\{#AppName}
 DisableDirPage=yes
 DefaultGroupName={#AppName}
 DisableProgramGroupPage=yes
-LicenseFile=LICENSE
+LicenseFile=..\..\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 Compression=lzma
@@ -29,9 +29,9 @@ WizardStyle=modern
 ChangesEnvironment=yes
 
 [Files]
-Source: "build\{#AppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\kubectl.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\helm.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\{#AppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\kubectl.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\windows-amd64\helm.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -59,4 +59,5 @@ begin
   { Pos() returns 0 if not found }
   Result := Pos(';' + Param + ';', ';' + OrigPath + ';') = 0;
 end;
+
 

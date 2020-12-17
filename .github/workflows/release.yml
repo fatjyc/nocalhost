@@ -62,7 +62,6 @@ jobs:
       uses: actions/checkout@v2
     - name: package
       run: |
-        echo ${{ steps.get_tag.outputs.RELEASE_VERSION }}
         md build
         choco install curl
         choco install unzip

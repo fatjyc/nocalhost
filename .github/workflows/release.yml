@@ -91,4 +91,5 @@ jobs:
         echo "::set-output name=upload_url::$UploadUrl"
         md build
         choco install curl
-        curl -L "https://github.com/fatjyc/nocalhost/releases/$Version/download/nhctl-windows-amd64.exe" -o build/nhctl.exe
+        curl -L "https://github.com/fatjyc/nocalhost/releases/download/$Version/nhctl-windows-amd64.exe" -o build/nhctl.exe
+

@@ -91,20 +91,4 @@ jobs:
         echo "::set-output name=upload_url::$UploadUrl"
         md build
         choco install curl
-        choco install unzip
         curl -L "https://github.com/fatjyc/nocalhost/releases/$Version/download/nhctl-windows-amd64.exe" -o build/nhctl.exe
-        curl -L https://storage.googleapis.com/kubernetes-release/release/v1.20.0/bin/windows/amd64/kubectl.exe -o build/kubectl.exe
-        curl -L https://get.helm.sh/helm-v3.4.2-windows-amd64.zip -o build/helm.zip
-        unzip build/helm.zip -d build
-        iscc /DAppVersion=$Version scripts/release/nocalhost.iss
-
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.package.outputs.upload_url }}
-        asset_path: build/NocalhostInstaller.exe
-        asset_name: NocalhostInstaller.exe
-        asset_content_type: application/octet-stream
-
